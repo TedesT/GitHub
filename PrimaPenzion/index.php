@@ -1,9 +1,8 @@
 <?php
 
 require "seznamstranek.php";
-// pokud uzivatel zvolil nejakou stranku tak mu ji zobrazime
-// pokud prisel aniz by neco zvolil tak mu zobrazime stranku
-// "Domu"
+
+// Otevře zvolenou stránku ELSE přesměruje domu
 if(array_key_exists("stranka", $_GET))
 {
     $stranka = $_GET["stranka"];
@@ -12,13 +11,12 @@ else
 {
     $stranka = "domu";
 }
-// potrebujeme zkontrolovat zdali vybrana stranka
-// existuje. A pokud neexistuje tak misto toho
-// zobrazime nahradni stranku
+
+// Kontrola zda-li stránka exituje - když ne, tak 404
 if (!array_key_exists($stranka, $seznamStranek))
 {
     $stranka = "404";
-    //sdelime vyhledavaci ze stranka neexistuje
+    // Sdělení vyhledavači, že stránka neexistuje
     http_response_code(404);
 }
 
@@ -33,7 +31,7 @@ if (!array_key_exists($stranka, $seznamStranek))
     <link rel="stylesheet" href="./style/content.css">
     <link rel="stylesheet" href="./style/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="./img/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="upload/source/thumbs/favicon.png">
     <title><?php echo $seznamStranek[$stranka]->getTitulek() ?></title>
 </head>
 
@@ -68,12 +66,6 @@ if (!array_key_exists($stranka, $seznamStranek))
                         echo "<li><a href='$jmenoStranka'>{$udaje->getMenu()}</a></li>";
                     }
                     ?>
-                    <!--
-                    <li><a href="?stranka=domu">Domu</a></li>
-                    <li><a href="?stranka=kontakt">Kontakt</a></li>
-                    <li><a href="?stranka=galerie">Galerie</a></li>
-                    <li><a href="?stranka=rezervace">Rezervace</a></li>
-                    -->
                 </ul>
             </div>
         </div>
@@ -111,7 +103,7 @@ if (!array_key_exists($stranka, $seznamStranek))
 
             <div class="address">
                 <i class="fas fa-globe-europe"></i>
-                <a href="https://goo.gl/maps/CXV5vPzUhGGJ3XwS8" target="_blank"><strong>PrimaPenzion</strong>, Jablonskeho 640, Praha 7</a>
+                <a href="https://goo.gl/maps/CXV5vPzUhGGJ3XwS8" target="_blank"><strong>PrimaPenzion</strong>, Jablonského 640, Praha 7</a>
             </div>
 
             <div class="call">

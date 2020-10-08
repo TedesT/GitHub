@@ -38,31 +38,6 @@ class Stranka
     }
 }
 
-/*
-$seznamStranek = array(
-	"domu" => array(
-		"titulek" => "PrimaPenzion",
-		"menu" => "Domů",
-	),
-	"kontakt" => array(
-		"titulek" => "Jak nás kontaktujete",
-		"menu" => "Kontakt",
-	),
-	"galerie" => array(
-		"titulek" => "Fotky pokojů",
-		"menu" => "Galerie",
-	),
-	"rezervace" => array(
-		"titulek" => "Objednávka pokojů",
-		"menu" => "Rezervace",
-    ),
-	"404" => array(
-		"titulek" => "Stránka neexistuje",
-		"menu" => "",
-	),
-);
-*/
-
 $seznamStranek = array(
     "domu" => new Stranka("domu", "PrimaPenzion", "Domů"),
     "kontakt" => new Stranka("kontakt", "Jak nás kontaktujete", "Kontakt"),

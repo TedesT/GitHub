@@ -3,7 +3,7 @@ session_start();
 
 require "seznamstranek.php";
 
-//zpracovani prihlaseni
+// Přihlášení
 $chyba = null;
 if (array_key_exists("prihlasit", $_POST)) 
 {
@@ -18,13 +18,13 @@ if (array_key_exists("prihlasit", $_POST))
     }
 }
 
-// zpracovani prihlaseni
+// Odhlášení
 if (array_key_exists("odhlasit", $_POST))
 {
     unset($_SESSION["prihlasen"]);
 }
 
-// zjistim ktera stranka je vybrana
+// Funkce pro zjištění vybrané stránky
 $vybranaStranka = null;
 if (array_key_exists("stranka", $_GET))
 {
@@ -32,7 +32,7 @@ if (array_key_exists("stranka", $_GET))
     $vybranaStranka = $seznamStranek[$idStranky];
 }
 
-// Zpracovani ulozeni textarea
+// Uložení TEXTAREA
 if (array_key_exists("ulozit", $_POST))
 {
     $obsah = $_POST["obsah"];
@@ -88,7 +88,7 @@ if (array_key_exists("ulozit", $_POST))
         ?>
 
             <form method="POST">
-                <button name="odhlasit">Odhlasit se</button>
+                <button name="odhlasit">Odhlásit se</button>
             </form>
         <?php
         echo "<ul>";
