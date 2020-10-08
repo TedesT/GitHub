@@ -1,0 +1,15 @@
+body{
+    text-decoration: none;
+    list-style: none;
+}
+
+
+
+.login{
+    padding-top: 50px;
+}
+
+.chyba{
+    color: red;
+    font-weight: bold;
+}
