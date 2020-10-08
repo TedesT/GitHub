@@ -3,13 +3,44 @@ body{
     list-style: none;
 }
 
-
-
 .login{
     padding-top: 50px;
 }
 
+ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+}
+
+li{
+    padding: 0 5px;
+}
+
+.login table{
+    display: flex;
+    justify-content: center;
+}
+
+table td{
+    text-align: center;
+    width: 70px;
+    height: 35px;
+}
+
+form{
+    text-align: center;
+}
+
+button{
+    width: 200px;
+    height: 30px;
+}
+
 .chyba{
+    padding-top: 15px;
+    text-align: center;
     color: red;
     font-weight: bold;
 }

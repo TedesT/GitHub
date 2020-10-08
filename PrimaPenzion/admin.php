@@ -39,7 +39,6 @@ if (array_key_exists("ulozit", $_POST))
 
     $vybranaStranka->ulozObsah($obsah);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +69,7 @@ if (array_key_exists("ulozit", $_POST))
                         <td><input type="password" name="heslo"></td>
                     </tr>
                     <tr>
-                        <td><button name="prihlasit">Přihlásit</button></td>
+                        <td colspan="2"><button name="prihlasit">Přihlásit</button></td>
                     </tr>
                 </form>
             </table>
@@ -100,7 +99,7 @@ if (array_key_exists("ulozit", $_POST))
 
         if ($vybranaStranka != null)
         { 
-        echo "<h2>Editace stranky: {$vybranaStranka->getId()}</h2>";
+        echo "<h2>Editace stránky: {$vybranaStranka->getId()}</h2>";
 
         ?>
             <form method="POST">
