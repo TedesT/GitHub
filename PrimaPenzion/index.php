@@ -1,25 +1,18 @@
 <?php
+require_once "data.php";
 
-require "seznamstranek.php";
-
-// Otevře zvolenou stránku ELSE přesměruje domu
-if(array_key_exists("stranka", $_GET))
-{
-    $stranka = $_GET["stranka"];
-}
-else
-{
-    $stranka = "domu";
+//* Open desired pages
+if (array_key_exists("pages", $_GET)) {
+    $pages = $_GET["pages"];
+} else {
+    $pages = array_keys($pageList)[0];
 }
 
-// Kontrola zda-li stránka exituje - když ne, tak 404
-if (!array_key_exists($stranka, $seznamStranek))
-{
-    $stranka = "404";
-    // Sdělení vyhledavači, že stránka neexistuje
+//* Check if pages exist - if not than 404
+if (!array_key_exists($pages, $pageList)) {
+    $pages = "404";
     http_response_code(404);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,12 +20,11 @@ if (!array_key_exists($stranka, $seznamStranek))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/content.css">
-    <link rel="stylesheet" href="./style/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="upload/source/thumbs/favicon.png">
-    <title><?php echo $seznamStranek[$stranka]->getTitulek() ?></title>
+    <link rel="shortcut icon" type="image/png" href="upload/thumbs/favicon.png">
+    <title><?php echo $pageList[$pages]->getTitle(); ?></title>
 </head>
 
 <body>
@@ -51,7 +43,7 @@ if (!array_key_exists($stranka, $seznamStranek))
             </div>
 
             <div class="logo">
-                <a href="./index.html" class="logo_h">
+                <a href="?page=home">
                     <p>Prima</p>
                     <p>Penzion</p>
                 </a>
@@ -60,10 +52,10 @@ if (!array_key_exists($stranka, $seznamStranek))
             <div class="main_menu">
                 <ul>
                     <?php
-                    foreach($seznamStranek as $jmenoStranka => $udaje)
-                    {
-                        if($jmenoStranka !="404")
-                        echo "<li><a href='$jmenoStranka'>{$udaje->getMenu()}</a></li>";
+                    foreach ($pageList as $pageName) {
+                        if ($pageName->getId() != "404") {
+                            echo "<li><a href='{$pageName->getId()}'>{$pageName->getMenu()}</a></li>";
+                        }
                     }
                     ?>
                 </ul>
@@ -72,30 +64,29 @@ if (!array_key_exists($stranka, $seznamStranek))
     </header>
 
     <div class="container">
-        <section class="showcase_<?php echo $stranka;?>">
-        </section>
+        <section class="showcase_<?php echo $pages; ?>"></section>
     </div>
 
-        <?php
-            echo $seznamStranek[$stranka]->getObsah();
-        ?>
+    <?php
+    echo $pageList[$pages]->getContent();
+    ?>
 
     <div class="container">
         <section class="footer">
             <div class="main_menu">
                 <ul>
                     <?php
-                    foreach($seznamStranek as $jmenoStranka => $udaje)
-                    {
-                        if($jmenoStranka !="404")
-                        echo "<li><a href='$jmenoStranka'>{$udaje->getMenu()}</a></li>";
+                    foreach ($pageList as $pageName) {
+                        if ($pageName->getId() != "404") {
+                            echo "<li><a href='{$pageName->getId()}'>{$pageName->getMenu()}</a></li>";
+                        }
                     }
                     ?>
                 </ul>
             </div>
 
             <div class="footer_logo">
-                <a href="?stranka=domu" class="logo_h">
+                <a href="?page=home" class="logo_h">
                     <p>Prima</p>
                     <p>Penzion</p>
                 </a>

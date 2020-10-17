@@ -3,4 +3,4 @@ RewriteEngine On
 
 # Požadavek na neexistující url -> zobrazí např index.php?stranka=kontakt
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule (.+) index.php?stranka=$1 [L,QSA]
+RewriteRule (.+) index.php?pages=$1 [L,QSA]

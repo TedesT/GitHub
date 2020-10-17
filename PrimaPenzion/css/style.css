@@ -1,0 +1,385 @@
+body{
+    margin: 0 auto;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Krona One', sans-serif;
+    font-size: 16px;
+    background: #f4f4f4;
+}
+
+/*                          Global*/
+
+:root{
+    --main-txt-color: #2d2d2d;
+    --main-hover-color: #cf7900;
+    --main-footer_bg_color: #c8c8c8;
+}
+
+.container{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-size: 58px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: var(--main-txt-color);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    font-size: 44px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: var(--main-txt-color);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+}
+
+h3{
+    font-size: 24px;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    color: var(--main-hover-color);
+}
+
+p{
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    margin: 0;
+    padding: 30px 15%;
+    line-height: 200%;
+}
+
+a{
+    text-decoration: none;
+    color: var(--main-txt-color);
+}
+
+.main_menu{
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+li{
+    list-style: none;
+    margin: 0;
+    padding: 0 25px;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--main-txt-color);
+}
+
+li a:hover{
+    color: var(--main-hover-color);
+    border-bottom: var(--main-hover-color) 3px solid;
+}
+
+/*                          Content*/
+.content{
+    margin: 0;
+    padding: 30px 0 30px 0;
+    letter-spacing: 2px;
+}
+
+/*                             Kontakt*/
+.content_contacts{
+    padding: 0;
+    margin: 30px 5%;
+    background: var(--main-footer_bg_color);
+}
+
+.content_contacts h2{
+    padding: 30px 0;
+}
+
+.details{
+    margin: 0;
+    padding: 0 15% 30px 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    width: 70%;
+}
+
+.box_1{
+    width: 320px;
+}
+
+.box_2{
+    width: 120px;
+}
+
+.box_1, .box_2 p{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.payment{
+    width: 100%;
+}
+
+.payment p, .payment_icons p{
+    padding: 0;
+}
+
+.payment_icons{
+    padding-bottom: 20px;
+}
+
+.payment_icons i{
+    font-size: 25px;
+}
+
+.gmaps{
+    margin: 0 5%;
+    border: var(--main-footer_bg_color) 1px solid;
+}
+
+.gmaps iframe{
+    width: 100%;
+}
+
+.content_contacts form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.content_contacts input, .content_contacts textarea, .content_contacts select{
+    width: 80%;
+    padding: 15px 0 15px 15px;
+    margin: 15px 0;
+    border: none;
+    font-family: 'Krona One', sans-serif;
+    outline: none;
+    background: #f4f4f4;
+    box-sizing: border-box;
+}
+
+.content_contacts textarea{
+    min-height: 200px;
+    resize: vertical;
+}
+
+.content_contacts button{
+    border: none;
+    background: var(--main-txt-color);
+    border-radius: 30px;
+    margin: 20px 0;
+    padding: 15px 30px;
+    font-family: 'Krona One', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    outline: none;
+    color: #f4f4f4;
+    opacity: 0.5;
+}
+
+.content_contacts button:hover{
+    transition: .6s ease;
+    background: var(--main-hover-color);
+    color: #000;
+    opacity: 1;
+}
+
+/*                          Gallery*/
+.content_galery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+    margin: 0;
+}
+
+.content_galery img{
+    width: 24%;
+}
+
+.content_galery .img_f:hover{
+    opacity: 0.3;
+    transition: .6s ease;
+}
+
+
+
+/*/////////////////////////////////*/
+
+
+
+/*                          Header*/
+.contacts{
+    margin: 0;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mobile a:hover, .social a:hover{
+    color: var(--main-hover-color);
+}
+
+.social a{
+    margin: 0;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.logo{
+    margin: 0;
+    padding: 20px 0;
+}
+
+.logo:hover{
+    color: var(--main-hover-color); 
+}
+
+.logo p{
+    text-align: center;    
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    line-height: 50px;
+}
+
+/*                          Showcase*/
+.showcase_domu{
+    height: 300px;
+    background: url(../upload/source/primapenzion-main.jpg) no-repeat center center;
+}
+
+.showcase_kontakt{
+    height: 300px;
+    background: url(../upload/source/primapenzion-room.jpg) no-repeat center center;
+}
+
+.showcase_galerie{
+    height: 300px;
+    background: url(../upload/source/primapenzion-room2.jpg) no-repeat center center;
+}
+
+.showcase_rezervace{
+    height: 300px;
+    background: url(../upload/source/primapenzion-pool-min.jpg) no-repeat center center;
+}
+
+/*                          Footer*/
+.footer{
+    padding: 0;
+    margin: 0;
+    height: 280px;
+    background: var(--main-footer_bg_color);
+}
+
+.footer_logo{
+    margin: 0;
+    padding: 0 0 20px 0;
+}
+
+.footer_logo p{
+    text-align: center;    
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    line-height: 100%;
+}
+
+.address, .call, .email, .footer_social{
+    padding-bottom: 5px
+}
+
+.footer_social a{
+    margin: 0;
+    padding: 0 10px;
+    font-size: 30px;
+}
+
+.address a, .call a, .email a{
+    font-size: 15px;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+.email a{
+    color: var(--main-hover-color);
+}
+
+.address a:hover, .call a:hover, .footer_social a:hover{
+    color: var(--main-hover-color);
+}
+
+
+/*                          Error 404*/
+.h1_w404{
+    padding-top: 20px;
+    text-align: center;
+}
+.img_w404{
+    width: 40%;
+    padding: 20px;
+}
+
+/*                          Responsive*/
+@media screen and (max-width: 700px){
+    .footer{
+        height: 370px;
+    }
+    .main_menu ul{
+        display: flex;
+        flex-direction: column;
+        padding: 0 35% 15px 35%;
+        margin: 0;
+    }
+
+    .main_menu li{
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    .details{
+        margin: 0;
+        padding: 0 0 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        width: 100%;
+    }
+
+    .content_galery img{
+        width: 95%;
+    }
+
+    p{
+        padding: 30px 2%;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .w404{
+        width: 85%;
+        padding: 20px;
+    }
+}

@@ -1,43 +1,56 @@
 <?php
 session_start();
 
-require "seznamstranek.php";
+require_once "data.php";
+$currentPages = null;
 
-// Přihlášení
-$chyba = null;
-if (array_key_exists("prihlasit", $_POST)) 
-{
-    $jmeno = $_POST["jmeno"];
-    $heslo = $_POST["heslo"];
-
-    if ($jmeno == "admin" && $heslo == "admin") 
-    {
-        $_SESSION["prihlasen"] = true;
+//* Login action
+if (array_key_exists("login", $_POST)) {
+    if ($_POST["username"] == "admin" && $_POST["password"] == "admin") {
+        $_SESSION["userId"] = $_POST["username"];
     } else {
-        $chyba = "Nesprávné přihlašovací údaje";
+        echo "Access denied!";
     }
 }
 
-// Odhlášení
-if (array_key_exists("odhlasit", $_POST))
-{
-    unset($_SESSION["prihlasen"]);
+//* Logout action
+if (array_key_exists("logout", $_GET)) {
+    unset($_SESSION["userId"]);
+    header("location: ?");
 }
 
-// Funkce pro zjištění vybrané stránky
-$vybranaStranka = null;
-if (array_key_exists("stranka", $_GET))
-{
-    $idStranky = $_GET["stranka"];
-    $vybranaStranka = $seznamStranek[$idStranky];
+//* Create new page
+if (array_key_exists("new", $_GET)) {
+    $currentPages = new Pages("", "", "");
 }
 
-// Uložení TEXTAREA
-if (array_key_exists("ulozit", $_POST))
-{
-    $obsah = $_POST["obsah"];
+//* Edit page
+if (array_key_exists("edit", $_GET)) {
+    $pageId = $_GET["edit"];
+    $currentPages = $pageList[$pageId];
+}
 
-    $vybranaStranka->ulozObsah($obsah);
+//* Update page
+if (array_key_exists("update", $_POST)) {
+    $newContent = $_POST["page-content"];
+
+    //* Set properties - not saved in database
+    $currentPages->setId($_POST["page-id"]);
+    $currentPages->setTitle($_POST["page-title"]);
+    $currentPages->setMenu($_POST["page-menu"]);
+    //* Save to database
+    $currentPages->updateMetaData();
+    //* Update content
+    $currentPages->setContent($newContent);
+
+    header("location: ?edit={$currentPages->id}");
+}
+
+//* Delete page
+if (array_key_exists("deletePage", $_GET)) {
+    $pageIdToDelete = $_GET["deletePage"];
+    $pageList[$pageIdToDelete]->deletePage();
+    header("location: ?");
 }
 ?>
 <!DOCTYPE html>
@@ -46,71 +59,86 @@ if (array_key_exists("ulozit", $_POST))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/admin.css">
-    <script src="lib/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="js/admin-tinymce.js"></script>
+    <link rel="stylesheet" href="css/admin.css">
     <title>Admin</title>
 </head>
 
 <body>
-<?php
-	if (!array_key_exists("prihlasen", $_SESSION))
-	{
+    <?php
+    //* Show if logged in
+    if (array_key_exists("userId", $_SESSION)) {
+        echo "<button name='logout'><a href='?logout=true'>Log-out</a></button>";
+
+        echo "<table border='1' cellpadding='0' cellspacing='0'>";
+        foreach ($pageList as $actualPage) {
+            echo "  <tr>
+                        <td><a href='?edit={$actualPage->getId()}'>{$actualPage->getId()}</a></td>
+                        <td><a href='?delete={$actualPage->getId()}'>Delete</a></td>
+                    </tr>";
+        }
+        echo "</table>";
+        echo "<a href='?new=true'>Create new page</a>";
+
+        if ($currentPages != null) {
+    ?>
+            <form method="POST">
+                <label for="id-input">ID</label>
+                <input type="text" name="page-id" id="id-input" value="<?php echo $currentPages->getId(); ?>">
+                <label for="title-input">Title</label>
+                <input type="text" name="page-title" id="title-input" value="<?php echo $currentPages->getTitle(); ?>">
+                <label for="menu-input">Menu</label>
+                <input type="text" name="page-menu" id="menu-input" value="<?php echo $currentPages->getMenu(); ?>">
+                <textarea name="page-content" id="textarea-content" cols="30" rows="40"><?php echo htmlspecialchars($currentPages->getContent()) ?></textarea>
+                <input type="submit" name="update" value="Update page">
+            </form>
+
+            <script src="./vendor/tinymce/js/tinymce/tinymce.min.js"></script>
+            <script>
+                //selector: #idtextareay
+                tinymce.init({
+                    selector: "#textarea-content",
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                        "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                        "table contextmenu directionality emoticons paste textcolor responsivefilemanager code"
+                    ],
+                    toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+                    toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+                    image_advtab: true,
+                    external_filemanager_path: "vendor/responsive_filemanager/filemanager/",
+                    external_plugins: {
+                        "filemanager": "plugins/responsivefilemanager/plugin.min.js"
+                    },
+                    filemanager_title: "Responsive Filemanager",
+                    entity_encoding: 'raw',
+                    verify_html: false,
+                    content_css: "./css/style.css"
+                });
+            </script>
+        <?php
+        }
+    } else {
         ?>
         <div class="login">
             <table border='0' cellpadding='0' cellspacing='0'>
                 <form method="post">
                     <tr>
-                        <td>Jméno:</td>
-                        <td><input type="text" name="jmeno"></td>
+                        <td>Username:</td>
+                        <td><input type="text" name="username"></td>
                     </tr>
                     <tr>
-                        <td>Heslo:</td>
-                        <td><input type="password" name="heslo"></td>
+                        <td>Password:</td>
+                        <td><input type="password" name="password"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button name="prihlasit">Přihlásit</button></td>
+                        <td><button name="login">Log-in</button></td>
                     </tr>
                 </form>
             </table>
         </div>
-		<?php
-		if ($chyba != null)
-		{
-			echo "<div class='chyba'>$chyba</div>";
-		}
-		?>
-	<?php
+    <?php
     }
-    else
-    {
-        ?>
-
-            <form method="POST">
-                <button name="odhlasit">Odhlásit se</button>
-            </form>
-        <?php
-        echo "<ul>";
-            foreach ($seznamStranek as $stranka => $udaje)
-            {
-                echo "<li><a href='?stranka=$stranka'>$stranka</a></li>";
-            }
-        echo "</ul>";
-
-        if ($vybranaStranka != null)
-        { 
-        echo "<h2>Editace stránky: {$vybranaStranka->getId()}</h2>";
-
-        ?>
-            <form method="POST">
-                <textarea name="obsah" rows=20 cols=120><?php echo htmlspecialchars($vybranaStranka->getObsah()); ?></textarea>
-                <br>
-                <button name="ulozit">Uložit</button>
-            </form>
-        <?php
-        }
-    }
-	?>
+    ?>
 </body>
 
 </html>
