@@ -8,10 +8,10 @@ $db = new PDO(
 
 class Pages
 {
-    public $id;
-    public $oldId;
-    public $title;
-    public $menu;
+    private $id;
+    private $oldId;
+    private $title;
+    private $menu;
 
     function __construct($agrId, $agrTitle, $agrMenu)
     {
