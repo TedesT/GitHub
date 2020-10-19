@@ -22,7 +22,8 @@ if (!array_key_exists($pages, $pageList)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/content.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="upload/thumbs/favicon.png">
     <title><?php echo $pageList[$pages]->getTitle(); ?></title>
 </head>
@@ -31,10 +32,7 @@ if (!array_key_exists($pages, $pageList)) {
     <header>
         <div class="container">
             <div class="contacts">
-
-                <div class="mobile">
-                    <a href="tel:+420606123456">+420 606 123 456</a>
-                </div>
+                <a class="tel" href="tel:+420606123456">+420 606 123 456</a>
 
                 <div class="social">
                     <a href="https://www.instagram.com/primakurzy_cz/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -43,7 +41,7 @@ if (!array_key_exists($pages, $pageList)) {
             </div>
 
             <div class="logo">
-                <a href="?page=home">
+                <a href="./">
                     <p>Prima</p>
                     <p>Penzion</p>
                 </a>
@@ -63,35 +61,33 @@ if (!array_key_exists($pages, $pageList)) {
         </div>
     </header>
 
-    <div class="container">
-        <section class="showcase_<?php echo $pages; ?>"></section>
-    </div>
+    <section class="showcase_<?php echo $pages; ?>"></section>
 
     <?php
     echo $pageList[$pages]->getContent();
     ?>
 
-    <div class="container">
-        <section class="footer">
-            <div class="main_menu">
-                <ul>
-                    <?php
-                    foreach ($pageList as $pageName) {
-                        if ($pageName->getId() != "404") {
-                            echo "<li><a href='{$pageName->getId()}'>{$pageName->getMenu()}</a></li>";
-                        }
+    <section class="footer">
+        <div class="main_menu">
+            <ul>
+                <?php
+                foreach ($pageList as $pageName) {
+                    if ($pageName->getId() != "404") {
+                        echo "<li><a href='{$pageName->getId()}'>{$pageName->getMenu()}</a></li>";
                     }
-                    ?>
-                </ul>
-            </div>
+                }
+                ?>
+            </ul>
+        </div>
 
-            <div class="footer_logo">
-                <a href="?page=home" class="logo_h">
-                    <p>Prima</p>
-                    <p>Penzion</p>
-                </a>
-            </div>
+        <div class="footer_logo">
+            <a href="./" class="logo_h">
+                <p>Prima</p>
+                <p>Penzion</p>
+            </a>
+        </div>
 
+        <div class="footer_contact">
             <div class="address">
                 <i class="fas fa-globe-europe"></i>
                 <a href="https://goo.gl/maps/CXV5vPzUhGGJ3XwS8" target="_blank"><strong>PrimaPenzion</strong>, Jablonského 640, Praha 7</a>
@@ -111,8 +107,8 @@ if (!array_key_exists($pages, $pageList)) {
                 <a href="https://www.instagram.com/primakurzy_cz/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/PrimaKurzy/" target="_blank"><i class="fab fa-facebook-square"></i></a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
 </body>
 

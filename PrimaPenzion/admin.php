@@ -112,7 +112,7 @@ if (array_key_exists("deletePage", $_GET)) {
                     filemanager_title: "Responsive Filemanager",
                     entity_encoding: 'raw',
                     verify_html: false,
-                    content_css: "./css/style.css"
+                    content_css: ["./css/style.css", "./css/content.css"]
                 });
             </script>
         <?php

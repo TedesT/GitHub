@@ -1,0 +1,170 @@
+:root {
+    --main-txt-color: #2d2d2d;
+    --main-hover-color: #cf7900;
+    --main-footer_bg_color: #c8c8c8;
+}
+
+.content {
+    padding: 30px 0;
+}
+
+h1 {
+    font-size: 45px;
+    padding: 10px;
+}
+
+h2 {
+    font-size: 35px;
+    padding: 10px;
+}
+
+h3 {
+    font-size: 25px;
+    padding: 10px;
+    font-weight: normal;
+    color: var(--main-hover-color);
+}
+
+/*      Home page*/
+.home_p {
+    padding: 30px 15% 10px;
+    line-height: 250%;
+}
+
+/*      Contact*/
+.bground {
+    background-color: var(--main-footer_bg_color);
+    padding: 15px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.box_1, .box_2 {
+    text-align: left;
+    line-height: 200%;
+    padding: 20px 0;
+}
+
+.box_1 {
+    padding-left: 60px;
+}
+
+.box_2 {
+    padding-right: 60px;
+}
+
+.address a, .call a, .email a {
+    color: var(--main-txt-color);
+}
+
+.gmaps {
+    border: var(--main-footer_bg_color) 1px solid;
+}
+
+.gmaps iframe {
+    width: 100%;
+}
+
+.content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content input, .content textarea, .content select {
+    width: 80%;
+    padding: 15px 0 15px 15px;
+    margin: 15px 0;
+    border: none;
+    outline: none;
+    background: #f4f4f4;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.button1 {
+    width: 200px;
+    border: none;
+    background: var(--main-txt-color);
+    border-radius: 30px;
+    margin: 20px 0;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    outline: none;
+    color: #f4f4f4;
+    opacity: 0.5;
+}
+
+.button1:hover {
+    transition: .6s ease;
+    background: var(--main-hover-color);
+    color: #000;
+    opacity: 1;
+}
+
+/*      Gallery*/
+.content img {
+    width: 24%;
+    padding: 5px;
+}
+
+.content img:hover{
+    opacity: 0.3;
+    transition: .6s ease;
+}
+
+/*      Rezervation*/
+
+
+/*                          Error 404*/
+.h1_w404{
+    padding-top: 20px;
+    text-align: center;
+}
+.img_w404{
+    width: 40%;
+    padding: 20px;
+}
+
+
+/*      Responsive*/
+@media screen and (max-width: 1000px) {
+    .home_p{
+        padding: 30px 0 0;
+    }
+
+    .content input, .content textarea, .content select {
+        width: 95%;
+        padding: 15px 0 15px 15px;
+        margin: 15px 0;
+        border: none;
+        outline: none;
+        background: #f4f4f4;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box_1, .box_2 {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .box_1 {
+        padding-left: 0;
+    }
+    
+    .box_2 {
+        padding-right: 0;
+    }
+}
